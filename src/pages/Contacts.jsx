@@ -15,6 +15,7 @@ export default function Contact({ navigation }) {
       errorTitle: 'Permissão negada',
       errorMessage: 'Não podemos conectar você sem sua permissão para acessar os contatos.',
       navigation,
+      navigateOnDenied: 'Feed',
       // se quiser navegar após permitir, use navigateOnGranted: 'OutraTela',
     });
   };
@@ -26,7 +27,7 @@ export default function Contact({ navigation }) {
       errorTitle: 'Acesso negado',
       errorMessage: 'Você pode ativar a permissão nas configurações do seu celular a qualquer momento.',
       navigation,
-      navigateOnDenied: 'Home',
+      navigateOnDenied: 'Feed',
     });
   };
 
@@ -39,7 +40,6 @@ export default function Contact({ navigation }) {
         subTitle="Precisamos da sua permissão para acessar seus contatos."
         text="Assim fortalecemos sua rede de apoio, conectando você a amigos que já usam o iSaúde e convidando quem precisa de ajuda."
         style={style}
-        // Se o InicialText usa StylesContainers, passe só o que ele precisa (ex: textContent)
       />
 
       <PermissionButtons

@@ -16,7 +16,6 @@ export default function Localization({ navigation }) {
       errorMessage: 'Não podemos usar sua localização sem permissão.',
       navigation,
       navigateOnGranted: 'Contacts',
-      navigateOnDenied: 'Home',
     });
   };
 
@@ -28,7 +27,7 @@ export default function Localization({ navigation }) {
       errorMessage:
         'Você pode ativar a localização nas configurações do seu celular a qualquer momento.',
       navigation,
-      navigateOnDenied: 'Home',
+      navigateOnDenied: 'Contacts',
     });
   };
 

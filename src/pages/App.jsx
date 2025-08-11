@@ -1,9 +1,11 @@
 import React from 'react';
 import Loading from './Loading'; 
 import Localization from './Localization'; 
-import Contact from './Contacts'
+import Contact from './Contacts';
+import {Feed} from './Feed';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 
 const Stack = createStackNavigator();
 
@@ -11,8 +13,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Loading">
-        {/* A tela de loading é a primeira rota.
-            Ela irá navegar para a tela 'Welcome' sozinha. */}
         <Stack.Screen 
           name="Loading" 
           component={Loading} 
@@ -35,6 +35,16 @@ export default function App() {
           title: 'Contatos',
           headerLeft: () => null,
           headerShown: true
+          }}
+        />
+
+         <Stack.Screen 
+          name="Feed" 
+          component={Feed}
+          options={{ 
+          title: 'Feed',
+          headerLeft: () => null,
+          headerShown: null
           }}
         />
       </Stack.Navigator>
