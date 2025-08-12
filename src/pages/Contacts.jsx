@@ -6,6 +6,7 @@ import * as Contacts from 'expo-contacts';
 import { InicialText } from '../components/InicialText';
 import { handlePermission } from '../components/Permissions';
 import { PermissionButtons } from '../components/PermissionButton';
+import Feed from './Feed';
 
 export default function Contact({ navigation }) {
   const handleAllowPress = () => {
@@ -15,7 +16,7 @@ export default function Contact({ navigation }) {
       errorTitle: 'Permissão negada',
       errorMessage: 'Não podemos conectar você sem sua permissão para acessar os contatos.',
       navigation,
-      navigateOnDenied: 'Feed',
+      navigateOnDenied: 'MainTabs',
       // se quiser navegar após permitir, use navigateOnGranted: 'OutraTela',
     });
   };
@@ -27,7 +28,7 @@ export default function Contact({ navigation }) {
       errorTitle: 'Acesso negado',
       errorMessage: 'Você pode ativar a permissão nas configurações do seu celular a qualquer momento.',
       navigation,
-      navigateOnDenied: 'Feed',
+      navigateOnDenied: 'MainTabs',
     });
   };
 

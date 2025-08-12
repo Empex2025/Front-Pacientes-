@@ -1,14 +1,17 @@
+// App.js
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Loading from './Loading'; 
 import Localization from './Localization'; 
 import Contact from './Contacts';
-import {Feed} from './Feed';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
+// Importa o componente BottomNav, que agora é o nosso navegador de abas.
+import { BottomNav } from '../BottomNav';
 
 const Stack = createStackNavigator();
 
+// Definindo o componente principal do aplicativo
 export default function App() {
   return (
     <NavigationContainer>
@@ -27,7 +30,6 @@ export default function App() {
           headerShown: true
           }}
         />
-
         <Stack.Screen 
           name="Contacts" 
           component={Contact} 
@@ -37,14 +39,16 @@ export default function App() {
           headerShown: true
           }}
         />
-
-         <Stack.Screen 
-          name="Feed" 
-          component={Feed}
+        {/*
+          O BottomNav é uma única tela no Stack.Navigator.
+          Isso faz com que o BottomNav seja renderizado apenas uma vez e
+          sirva como um contêiner para as telas Feed e Profile.
+        */}
+        <Stack.Screen 
+          name="MainTabs" 
+          component={BottomNav}
           options={{ 
-          title: 'Feed',
-          headerLeft: () => null,
-          headerShown: null
+            headerShown: false
           }}
         />
       </Stack.Navigator>
