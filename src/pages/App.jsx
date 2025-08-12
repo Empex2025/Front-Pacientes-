@@ -19,7 +19,11 @@ export default function App() {
         <Stack.Screen 
           name="Loading" 
           component={Loading} 
-          options={{ headerShown: false }} 
+          options={{
+             headerShown: false,
+             gestureEnabled: false
+           }}
+         
         />
         <Stack.Screen 
           name="Localization" 
@@ -27,7 +31,8 @@ export default function App() {
           options={{ 
           title: 'Contatos',
           headerLeft: () => null,
-          headerShown: true
+          headerShown: true,
+          gestureEnabled: false
           }}
         />
         <Stack.Screen 
@@ -36,7 +41,8 @@ export default function App() {
           options={{ 
           title: 'Contatos',
           headerLeft: () => null,
-          headerShown: true
+          headerShown: true,
+          gestureEnabled: false
           }}
         />
         {/*
@@ -48,7 +54,8 @@ export default function App() {
           name="MainTabs" 
           component={BottomNav}
           options={{ 
-            headerShown: false
+           headerShown: false,
+           gestureEnabled: false
           }}
         />
       </Stack.Navigator>

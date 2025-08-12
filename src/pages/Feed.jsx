@@ -6,6 +6,6 @@ import { View, Text } from 'react-native';
 
 export const Feed = () => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Tela de Feed</Text>
+        <Text>Tela de Fsdfsdfeed</Text>
     </View>
 );
