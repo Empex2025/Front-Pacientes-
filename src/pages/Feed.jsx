@@ -1,11 +1,19 @@
-// Feed.js
-// A navegação inferior não precisa ser importada aqui, pois ela é gerenciada
-// pelo BottomNav, que é uma tela superior no navegador de pilha.
+//Feed.jsx
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Header from '../components/Header';
+import FeedBody from '../components/feedComponents/FeedBody';
 
 export const Feed = () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Tela de Fsdfsdfeed</Text>
-    </View>
+    <View style={FeedStyles.container}>
+        <Header />
+        <FeedBody />
+    </View>    
 );
+
+const FeedStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+       // backgroundColor:(239,241,245)
+    }
+});
