@@ -1,64 +1,63 @@
-// App.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Loading from './Loading'; 
-import Localization from './Localization'; 
+import Loading from './Loading';
+import Localization from './Localization';
 import Contact from './Contacts';
-
-// Importa o componente BottomNav, que agora é o nosso navegador de abas.
+import ProfileForFollow from './ProfileForFollow';
 import { BottomNav } from '../BottomNav';
+import { FeedProvider } from '../components/FeedContext'; // <-- Import
 
 const Stack = createStackNavigator();
 
-// Definindo o componente principal do aplicativo
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Loading">
-        <Stack.Screen 
-          name="Loading" 
-          component={Loading} 
-          options={{
-             headerShown: false,
-             gestureEnabled: false
-           }}
-         
-        />
-        <Stack.Screen 
-          name="Localization" 
-          component={Localization} 
-          options={{ 
-          title: 'Contatos',
-          headerLeft: () => null,
-          headerShown: true,
-          gestureEnabled: false
-          }}
-        />
-        <Stack.Screen 
-          name="Contacts" 
-          component={Contact} 
-          options={{ 
-          title: 'Contatos',
-          headerLeft: () => null,
-          headerShown: true,
-          gestureEnabled: false
-          }}
-        />
-        {/*
-          O BottomNav é uma única tela no Stack.Navigator.
-          Isso faz com que o BottomNav seja renderizado apenas uma vez e
-          sirva como um contêiner para as telas Feed e Profile.
-        */}
-        <Stack.Screen 
-          name="MainTabs" 
-          component={BottomNav}
-          options={{ 
-           headerShown: false,
-           gestureEnabled: false
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <FeedProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Loading">
+          <Stack.Screen
+            name="Loading"
+            component={Loading}
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="Localization"
+            component={Localization}
+            options={{
+              title: 'Localização',
+              headerLeft: () => null,
+              headerShown: true,
+              gestureEnabled: false
+            }}
+          />
+          <Stack.Screen
+            name="Contacts"
+            component={Contact}
+            options={{
+              title: 'Contatos',
+              headerLeft: () => null,
+              headerShown: true,
+              gestureEnabled: false
+            }}
+          />
+          <Stack.Screen
+            name="ProfileForFollow"
+            component={ProfileForFollow}
+            options={{
+              title: 'Perfis para seguir',
+              headerShown: true,
+            }}
+          />
+          <Stack.Screen
+            name="MainTabs"
+            component={BottomNav}
+            options={{
+              headerShown: false,
+              gestureEnabled: false
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </FeedProvider>
   );
 }

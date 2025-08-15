@@ -1,19 +1,24 @@
-//Feed.jsx
+// Feed.jsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import FeedBody from '../components/feedComponents/FeedBody';
+import HomeFeed from './HomeFeed';
+import { useFeed } from '../components/FeedContext';
 
-export const Feed = () => (
-    <View style={FeedStyles.container}>
-        <Header />
-        <FeedBody />
-    </View>    
-);
+export const Feed = () => {
+  const { showHomeFeed } = useFeed();
 
-const FeedStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-       // backgroundColor:(239,241,245)
-    }
+  return (
+    <View style={styles.container}>
+      <Header />
+      {showHomeFeed ? <HomeFeed /> : <FeedBody />}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
 });

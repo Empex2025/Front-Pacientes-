@@ -8,7 +8,7 @@ export const InicialText = ({ Title, subTitle, text }) => {
     // Usando um estilo estático para o contêiner
     <View style={textStyle.textContent}>
       {/* Aplicando os estilos estáticos diretamente nos Textos */}
-      <Text style={sttextStyleyle.titleText}>{Title}</Text>
+      <Text style={textStyle.titleText}>{Title}</Text>
       <Text style={textStyle.subTitleText}>{subTitle}</Text>
       <Text style={textStyle.bodyText}>{text}</Text>
     </View>
