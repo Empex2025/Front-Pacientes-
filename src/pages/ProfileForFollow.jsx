@@ -5,12 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import { InicialText } from '../components/InicialText';
 import { ProfileItem } from '../components/feedComponents/ProfileItem';
 import { PROFILES } from '../data/profilesData';
-import { useFeed } from '../components/FeedContext'; // <-- Import do contexto
+import { useFeed } from '../components/FeedContext'; //Import do contexto
 
 const ProfileForFollow = () => {
     const [searchText, setSearchText] = useState('');
     const navigation = useNavigation();
-    const { setShowHomeFeed } = useFeed(); // <-- Pega função do contexto
+    const { setShowHomeFeed } = useFeed(); // função do contexto
     
     const filteredProfiles = PROFILES.filter(profile => 
         profile.name.toLowerCase().includes(searchText.toLowerCase()) ||
