@@ -38,7 +38,7 @@ export const style = StyleSheet.create({
 
     FormatarTexto: (fontsz,bold,textColor) => {
         return {
-        fontSize: fontsz, // Removi o template literal para manter o tipo numérico
+        fontSize: fontsz, 
         fontWeight: bold,
         color:textColor,
         }
