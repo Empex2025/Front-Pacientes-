@@ -32,7 +32,7 @@ export const AnimatedTabBarIcon = ({ focused, InactiveIcon, ActiveIcon }) => {
 
 const styles = StyleSheet.create({
   iconContainer: {
-    width: 30, // Garante que o container tenha o mesmo tamanho do ícone
+    width: 30, 
     height: 30,
     alignItems: 'center',
     justifyContent: 'center',
