@@ -1,4 +1,4 @@
-// components/AnimatedTabBarIcon.js
+
 import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated } from 'react-native';
 
@@ -15,12 +15,12 @@ export const AnimatedTabBarIcon = ({ focused, InactiveIcon, ActiveIcon }) => {
 
   return (
     <View style={styles.iconContainer}>
-      {/* Ícone Ativo (Azul) */}
+
       <Animated.View style={[styles.icon, { opacity: animation }]}>
         <ActiveIcon width={30} height={30} />
       </Animated.View>
       
-      {/* Ícone Inativo (Preto) */}
+
       <Animated.View style={[styles.icon, { 
         opacity: animation.interpolate({ inputRange: [0, 1], outputRange: [1, 0] })
       }]}>
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    position: 'absolute', // Sobrepõe os dois ícones
+    position: 'absolute', /
   },
 });
