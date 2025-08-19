@@ -1,13 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from "react-native";
-// Importando o seu arquivo de estilos
 import { style, fontes } from '../styles/styles';
 
 export const InicialText = ({ Title, subTitle, text }) => {
   return (
-    // Usando um estilo estático para o contêiner
     <View style={textStyle.textContent}>
-      {/* Aplicando os estilos estáticos diretamente nos Textos */}
       <Text style={textStyle.titleText}>{Title}</Text>
       <Text style={textStyle.subTitleText}>{subTitle}</Text>
       <Text style={textStyle.bodyText}>{text}</Text>
