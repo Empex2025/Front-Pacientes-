@@ -1,8 +1,8 @@
-// Permissions.jsx
 import { Alert } from 'react-native';
 
 /**
  * Função genérica para solicitar qualquer tipo de permissão
+ * 
  * @param {Function} requestPermission - Função que solicita a permissão (ex: Location.requestForegroundPermissionsAsync)
  * @param {Object} options - Configurações de mensagens e navegação
  * @param {string} options.successTitle - Título do alerta quando permitido
@@ -10,8 +10,8 @@ import { Alert } from 'react-native';
  * @param {string} options.errorTitle - Título do alerta quando negado
  * @param {string} options.errorMessage - Mensagem do alerta quando negado
  * @param {Object} [options.navigation] - Objeto navigation do React Navigation (opcional)
- * @param {string} [options.navigateOnGranted] - Rota para navegar quando permitido (opcional)
- * @param {string} [options.navigateOnDenied] - Rota para navegar quando negado (opcional)
+ * @param {string} [options.navigateOnGranted] - Rota para navegar quando permitido
+ * @param {string} [options.navigateOnDenied] - Rota para navegar quando negado
  */
 export const handlePermission = async (requestPermission, options) => {
   try {
