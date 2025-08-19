@@ -1,24 +1,23 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-// Importando os SVGs conforme você especificou
+//icones
 import IconsTitle from '../../assets/header/Icon.svg';
 import Sino from '../../assets/header/Notification.svg';
 
 const Header = () => {
   return (
     <View style={styles.container}>
-      {/* Logo da iSaúde */}
+      
       <IconsTitle width={150} height={40} />
 
-      {/* Ícones da Direita */}
       <View style={styles.rightContainer}>
         <TouchableOpacity style={styles.notificationButton}>
           <Sino width={24} height={24} />
         </TouchableOpacity>
 
         <Image
-          source={{ uri: 'https://i.pravatar.cc/150?img=12' }} // Use a imagem do seu usuário aqui
+          source={{ uri: 'https://i.pravatar.cc/150?img=12' }} 
           style={styles.avatar}
         />
       </View>
@@ -32,15 +31,14 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',   // Alinha os itens na parte de baixo do container
-    paddingBottom: 15,       // Adiciona um espaçamento na parte de baixo
+    alignItems: 'flex-end',  
+    paddingBottom: 15,       
     paddingHorizontal: 20,
     backgroundColor: '#FFFFFF',
   },
   rightContainer: {
     flexDirection: 'row',
-    alignItems: 'center', // Mantemos 'center' para alinhar o sino e o avatar entre si
-    // A linha 'paddingBottom: 5' foi removida daqui para corrigir o alinhamento
+    alignItems: 'center', 
   },
   notificationButton: {
     width: 40,
