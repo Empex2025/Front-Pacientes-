@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    position: 'absolute', /
+    position: 'absolute',
   },
 });

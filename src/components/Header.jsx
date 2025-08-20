@@ -1,18 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 //icones
 import IconsTitle from '../../assets/header/Icon.svg';
 import Sino from '../../assets/header/Notification.svg';
 
 const Header = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       
       <IconsTitle width={150} height={40} />
 
       <View style={styles.rightContainer}>
-        <TouchableOpacity style={styles.notificationButton}>
+
+        <TouchableOpacity 
+          style={styles.notificationButton}
+          onPress={() => navigation.navigate('Notifications')}
+        >
           <Sino width={24} height={24} />
         </TouchableOpacity>
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { colors } from './styles/styles.js'
+
 import { TAB_CONFIG } from './utils/tab.config';
 import { AnimatedTabBarIcon } from './animations/AnimatedTabBarIcon';
 
@@ -16,7 +18,7 @@ export const BottomNav = () => {
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabBarLabel,
         tabBarInactiveTintColor: '#202124',
-        tabBarActiveTintColor: '#ffffff',
+        tabBarActiveTintColor: colors.principalColor,
         tabBarActiveBackgroundColor: '#d9eefcff',
         tabBarInactiveBackgroundColor: '#ffffff',
         tabBarItemStyle: styles.tabBarItem,
@@ -45,21 +47,18 @@ export const BottomNav = () => {
 
 const styles = StyleSheet.create({
   tabBar: {
-    height: 90,
-    paddingTop: 10,
-    borderRadius: 25,
-    borderTopWidth: 0,
+    height: 80,
     position: 'absolute',
     backgroundColor: '#ffffff',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
   },
   tabBarItem: {
-    borderRadius: 16,
-    marginHorizontal: 5,
+  height: '100%',  
   },
+
   tabBarLabel: {
     fontSize: 12,
     fontWeight: '500',
