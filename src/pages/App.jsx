@@ -63,7 +63,7 @@ export default function App() {
                   onPress={() => navigation.goBack()}
                   style={{ marginLeft: 15 }}
                 >
-                  <Text style={{ fontSize: 16, color: '#007AFF' }}>Notificações</Text>
+                  <Text style={{ fontSize: 16, color: '#007AFF' }}>  Notificações</Text>
                 </TouchableOpacity>
               ),
               headerStyle: {

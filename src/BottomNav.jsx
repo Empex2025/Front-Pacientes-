@@ -47,7 +47,7 @@ export const BottomNav = () => {
 
 const styles = StyleSheet.create({
   tabBar: {
-    height: 80,
+    height:95,
     position: 'absolute',
     backgroundColor: '#ffffff',
     shadowColor: '#000',
