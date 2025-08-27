@@ -1,40 +1,39 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, StatusBar } from 'react-native';
-import Header from '../components/Header'; // Supondo que você tenha este componente
+import { View, StyleSheet, ScrollView, StatusBar } from 'react-native';
+import Header from '../components/Header';
 import FlashesContainer from '../components/Flashs/FlashesContainer ';
-import Post from '../components/Posts/Post'; // Importando o novo componente Post
-import { postData } from '../data/mockPostData'; // Importando os dados de exemplo
-import PulsesAndFeedContainer from '../components/feedComponents/PulsesEfeed/PulsesAndFeedContainer'
+import Post from '../components/Posts/Post';
+import { postData } from '../data/mockPostData';
+import PulsesAndFeedContainer from '../components/feedComponents/PulsesEfeed/PulsesAndFeedContainer';
+
+// Importe o SafeAreaView de 'react-native-safe-area-context'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeFeed = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.container}>
+      {/* O StatusBar deve ser gerenciado a nível de aplicativo, não de componente */}
       <StatusBar barStyle="dark-content" />
+      
+      {/* O Header geralmente fica fixo no topo, fora da ScrollView */}
       <Header />
-      <ScrollView style={styles.container}>
+      
+      <ScrollView style={styles.scrollViewContent}>
         <FlashesContainer />
-
-        <PulsesAndFeedContainer/>
-
-        {/* Aqui você adiciona o componente de Post */}
+        <PulsesAndFeedContainer />
         <Post data={postData} />
-        
-        {/* Você pode adicionar mais posts aqui, talvez usando um .map() em uma lista de posts */}
-        <Post data={{...postData, id: '2'}} />
-
-        
-
+        <Post data={{ ...postData, id: '2' }} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
     backgroundColor: 'rgb(239,241,245)',
   },
-  container: {
+  scrollViewContent: {
     flex: 1,
   },
 });

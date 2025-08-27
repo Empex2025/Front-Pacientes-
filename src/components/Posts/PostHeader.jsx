@@ -1,8 +1,36 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'; // Usando Feather para os ícones
+import { ProfileOptionsModal } from '../ProfileOptionsModal';
+import { BlockConfirmationModal } from '../BlockConfirmationModal';
+import { useUserBlock } from '../UserBlockContext';
 
 const PostHeader = ({ user, source, timestamp }) => {
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [showBlockModal, setShowBlockModal] = useState(false);
+  const { isUserBlocked, blockUser } = useUserBlock();
+
+  const handleOptionsPress = () => {
+    setShowOptionsModal(true);
+  };
+
+  const handleAboutAccount = () => {
+    Alert.alert('Sobre a Conta', `Informações sobre ${user.name}`);
+  };
+
+  const handleReport = () => {
+    Alert.alert('Denunciar', `Denunciar ${user.name}`);
+  };
+
+  const handleBlockUser = () => {
+    setShowBlockModal(true);
+  };
+
+  const handleConfirmBlock = () => {
+    blockUser(user.id);
+    Alert.alert('Usuário Bloqueado', `${user.name} foi bloqueado com sucesso.`);
+  };
+
   return (
     <View style={styles.container}>
       <Image source={{ uri: user.avatar }} style={styles.avatar} />
@@ -17,10 +45,27 @@ const PostHeader = ({ user, source, timestamp }) => {
         <TouchableOpacity>
           <Icon name="bookmark" size={24} color="#65676B" />
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 16 }}>
+        <TouchableOpacity style={{ marginLeft: 16 }} onPress={handleOptionsPress}>
           <Icon name="more-horizontal" size={24} color="#65676B" />
         </TouchableOpacity>
       </View>
+
+      {/* Modais */}
+      <ProfileOptionsModal
+        visible={showOptionsModal}
+        onClose={() => setShowOptionsModal(false)}
+        onAboutAccount={handleAboutAccount}
+        onReport={handleReport}
+        onBlockUser={handleBlockUser}
+        username={user.username || user.name}
+      />
+
+      <BlockConfirmationModal
+        visible={showBlockModal}
+        onClose={() => setShowBlockModal(false)}
+        onConfirmBlock={handleConfirmBlock}
+        username={user.username || user.name}
+      />
     </View>
   );
 };

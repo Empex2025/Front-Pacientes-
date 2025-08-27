@@ -8,6 +8,9 @@ import { Search } from '../pages/PagesBottomBar/Explore';
 import { Health } from '../pages/PagesBottomBar/Health';
 import { Msg } from '../pages/PagesBottomBar/Msg';
 
+// Importando o FloatingActionButton
+import FloatingActionButton from '../components/FloatingActionButton';
+
 // Ícones
 import HomeIcon from '../../assets/bottomBar/Home.svg';
 import SearchIcon from '../../assets/bottomBar/Search.svg';
@@ -20,7 +23,12 @@ import BlueConversationIcon from '../../assets/bottomBar/BlueIcons/BlueConversat
 
 const InícioTab = () => {
   const { showHomeFeed } = useContext(FeedContext);
-  return showHomeFeed ? <HomeFeed /> : <FeedBody />;
+  return (
+    <>
+      {showHomeFeed ? <HomeFeed /> : <FeedBody />}
+      <FloatingActionButton />
+    </>
+  );
 };
 
 export const TAB_CONFIG = {

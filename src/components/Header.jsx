@@ -34,7 +34,7 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    height: 120,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',

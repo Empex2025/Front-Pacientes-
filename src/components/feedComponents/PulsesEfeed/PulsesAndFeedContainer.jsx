@@ -1,23 +1,34 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // Importe seus SVGs. Certifique-se que o caminho e o nome estão corretos.
 // É necessário ter a biblioteca 'react-native-svg' e 'react-native-svg-transformer' configuradas.
 import Pulses from '../../../../assets/FeedEpulse/Pulses.svg';
 import Feed from '../../../../assets/FeedEpulse/Feed.svg'; // Corrigi o nome do import e do arquivo
 
-const PulsesAndFeedContainer = () => (
-  // SafeAreaView é bom para evitar que o conteúdo fique atrás de notches ou da status bar.
-  <SafeAreaView style={styles.screen}>
-    <View style={styles.container}>
-      {/* Este container agrupa os SVGs */}
-      <View style={styles.svgWrapper}>
-        <Feed width={85} height={85} />
-        <Pulses width={85} height={85} />
+const PulsesAndFeedContainer = () => {
+  const navigation = useNavigation();
+
+  const handlePulsesPress = () => {
+    navigation.navigate('Pulses');
+  };
+
+  return (
+    // SafeAreaView é bom para evitar que o conteúdo fique atrás de notches ou da status bar.
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.container}>
+        {/* Este container agrupa os SVGs */}
+        <View style={styles.svgWrapper}>
+          <Feed width={85} height={85} />
+          <TouchableOpacity onPress={handlePulsesPress}>
+            <Pulses width={85} height={85} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  </SafeAreaView>
-);
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   screen: {

@@ -33,7 +33,7 @@ const ProfileForFollow = () => {
     return (
         <View style={styles.container}>
             <View style={styles.searchBarContainer}>
-                <Ionicons name="search" size={20} color="#888" style={styles.searchIcon} />
+                <Ionicons name="search" size={50} color="#888" style={styles.searchIcon} />
                 <TextInput
                     style={styles.searchInput}
                     placeholder="Busque por pessoas, assuntos e muito mais..."
@@ -42,7 +42,7 @@ const ProfileForFollow = () => {
                 />
                 {searchText.length > 0 && (
                     <TouchableOpacity onPress={() => setSearchText('')}>
-                        <Ionicons name="close-circle" size={20} color="#888" style={styles.clearIcon} />
+                        <Ionicons name="close-circle" size={60} color="#888" style={styles.clearIcon} />
                     </TouchableOpacity>
                 )}
             </View>
@@ -58,14 +58,25 @@ const ProfileForFollow = () => {
                     </Text>
                 }
                 ListFooterComponent={
-                    <TouchableOpacity 
-                        style={styles.homeFeedButton}
-                        onPress={goToHomeFeed} // <-- Novo handler
-                    >
-                        <Text style={styles.homeFeedButtonText}>
-                            Ir para HomeFeed
-                        </Text>
-                    </TouchableOpacity>
+                    <View style={styles.footerButtons}>
+                        <TouchableOpacity 
+                            style={styles.homeFeedButton}
+                            onPress={goToHomeFeed}
+                        >
+                            <Text style={styles.homeFeedButtonText}>
+                                Ir para HomeFeed
+                            </Text>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity 
+                            style={[styles.homeFeedButton, { backgroundColor: '#14B8A6', marginTop: 12 }]}
+                            onPress={() => navigation.navigate('UserProfileExample')}
+                        >
+                            <Text style={styles.homeFeedButtonText}>
+                                Ver Exemplo de Interações
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 }
             />
         </View>
@@ -114,12 +125,14 @@ const styles = StyleSheet.create({
     list: {
         paddingBottom: 20,
     },
+    footerButtons: {
+        marginTop: 20,
+    },
     homeFeedButton: {
         backgroundColor: '#007AFF',
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderRadius: 25,
-        marginTop: 20,
         alignSelf: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
