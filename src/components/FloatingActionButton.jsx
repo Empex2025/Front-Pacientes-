@@ -4,7 +4,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Animated,
+  Text,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // Importando os SVGs
 import BottomImage from '../../assets/bottomShortcuts/BottomImage.svg';
@@ -14,16 +16,19 @@ import FotosEVideosIcon from '../../assets/bottomShortcuts/FotosEVideos.svg';
 import PulseIcon from '../../assets/bottomShortcuts/Pulse.svg';
 
 const BUTTON_SIZE = 56;
+const OPTION_SIZE = 40; // Tamanho menor para as opções - mais proporcional
+const MAIN_ICON_SIZE = 80; // Tamanho maior para o ícone principal
 
 const FloatingActionButton = () => {
+  const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
   const [animation] = useState(new Animated.Value(0));
   const [buttonRotation] = useState(new Animated.Value(0));
 
   const options = [
-    { id: 'nota', icon: NotaIcon },
-    { id: 'fotos', icon: FotosEVideosIcon },
-    { id: 'pulse', icon: PulseIcon },
+    { id: 'nota', icon: NotaIcon, label: 'Nota' },
+    { id: 'fotos', icon: FotosEVideosIcon, label: 'Fotos' },
+    { id: 'pulse', icon: PulseIcon, label: 'Flash' },
   ];
 
   const toggleMenu = () => {
@@ -46,6 +51,21 @@ const FloatingActionButton = () => {
 
   const handleOptionPress = (optionId) => {
     console.log(`Opção selecionada: ${optionId}`);
+    
+    switch (optionId) {
+      case 'nota':
+        navigation.navigate('CreatePost');
+        break;
+      case 'fotos':
+        // Lógica para fotos e vídeos
+        console.log('Fotos e vídeos selecionados');
+        break;
+      case 'pulse':
+        navigation.navigate('CreateFlash');
+        break;
+      default:
+        break;
+    }
   };
 
   const buttonRotate = buttonRotation.interpolate({
@@ -53,12 +73,10 @@ const FloatingActionButton = () => {
     outputRange: ['0deg', '45deg'],
   });
 
-
-  const bottom_size =  200
   return (
     <View style={styles.container}>
       {/* Opções do menu */}
-      {options.map((option, index) => {
+      {isOpen && options.map((option, index) => {
         const scale = animation.interpolate({
           inputRange: [0, 1],
           outputRange: [0, 1],
@@ -66,7 +84,7 @@ const FloatingActionButton = () => {
 
         const translateY = animation.interpolate({
           inputRange: [0, 1],
-          outputRange: [0, -(index + 1) * (BUTTON_SIZE + 10)], // altura + espaçamento
+          outputRange: [0, -(index + 1) * (OPTION_SIZE + 12)], // Espaçamento ajustado
         });
 
         const opacity = animation.interpolate({
@@ -88,10 +106,12 @@ const FloatingActionButton = () => {
             ]}
           >
             <TouchableOpacity
+              style={styles.optionButton}
               onPress={() => handleOptionPress(option.id)}
-              activeOpacity={0.8}
+              activeOpacity={0.6}
             >
-              <IconComponent width={250} height={250} />
+              <IconComponent width={OPTION_SIZE} height={OPTION_SIZE} />
+              <Text style={styles.optionLabel}>{option.label}</Text>
             </TouchableOpacity>
           </Animated.View>
         );
@@ -109,22 +129,16 @@ const FloatingActionButton = () => {
           onPress={toggleMenu}
           activeOpacity={0.8}
         >
-          
-          
           {isOpen ? (
             <BottomImageActive 
-            style={{
-              top:30,
-              right:30
-            }}
-             width={bottom_size} height={bottom_size} />
+              width={MAIN_ICON_SIZE} 
+              height={MAIN_ICON_SIZE} 
+            />
           ) : (
             <BottomImage
-            style={{
-              top:30,
-              right:30
-            }}
-             width={bottom_size} height={bottom_size} />
+              width={MAIN_ICON_SIZE} 
+              height={MAIN_ICON_SIZE} 
+            />
           )}
         </TouchableOpacity>
       </Animated.View>
@@ -145,7 +159,6 @@ const styles = StyleSheet.create({
     width: BUTTON_SIZE,
     height: BUTTON_SIZE,
     borderRadius: BUTTON_SIZE / 2,
-  
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 8,
@@ -153,12 +166,45 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
+    backgroundColor: 'rgba(66, 103, 246, 0.1)', // Fundo azul sutil
+    borderWidth: 2,
+    borderColor: 'rgba(66, 103, 246, 0.3)', // Borda azul sutil
+  },
+  mainButtonContainer: {
+    width: BUTTON_SIZE,
+    height: BUTTON_SIZE,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   optionContainer: {
     position: 'absolute',
-    bottom: 0,
-    right: -37,
-    top:-60
+    bottom: BUTTON_SIZE + 6, // Posicionado acima do botão principal
+    right: 0,
+    width: OPTION_SIZE,
+    height: OPTION_SIZE + 20, // Altura extra para o label
+    alignItems: 'center',
+  },
+  optionButton: {
+    width: OPTION_SIZE,
+    height: OPTION_SIZE,
+    borderRadius: OPTION_SIZE / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Fundo branco semi-transparente
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.1)', // Borda sutil
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+  optionLabel: {
+    fontSize: 10,
+    color: '#666',
+    marginTop: 4,
+    textAlign: 'center',
+    fontWeight: '500',
   },
 });
 

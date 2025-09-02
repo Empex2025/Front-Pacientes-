@@ -1,11 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export const MsgHeader = ({ title = "Suas Conversas", profileImage, onProfilePress }) => {
+export const MsgHeader = ({ title = "Suas Conversas", profileImage }) => {
+  const navigation = useNavigation();
+
+  const handleProfilePress = () => {
+    navigation.navigate('ProfileOptions');
+  };
+
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{title}</Text>
-      <TouchableOpacity onPress={onProfilePress} style={styles.profileContainer}>
+      <TouchableOpacity onPress={handleProfilePress} style={styles.profileContainer}>
         <Image 
           source={{ 
             uri: profileImage || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop'

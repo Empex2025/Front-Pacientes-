@@ -7,6 +7,7 @@ import {
   FlatList
 } from 'react-native';
 import { healthStyles } from './HealthStyles';
+import StandardHeader from '../StandardHeader';
 
 const AppointmentsScreen = ({ onNavigate }) => {
   const [selectedTab, setSelectedTab] = useState('proximas');
@@ -49,12 +50,11 @@ const AppointmentsScreen = ({ onNavigate }) => {
 
   return (
     <View style={healthStyles.container}>
-      <View style={healthStyles.header}>
-        <TouchableOpacity onPress={() => onNavigate('home')}>
-          <Text style={healthStyles.backButton}>←</Text>
-        </TouchableOpacity>
-        <Text style={healthStyles.headerTitle}>Minhas Consultas</Text>
-      </View>
+      <StandardHeader 
+        title="Minhas Consultas" 
+        onBackPress={() => onNavigate('home')}
+        showProfileImage={true}
+      />
 
       <View style={healthStyles.tabsContainer}>
         <TouchableOpacity 

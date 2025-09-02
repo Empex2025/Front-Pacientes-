@@ -10,7 +10,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { UserProfileCard } from '../components/UserProfileCard';
-import { UserBlockProvider, useUserBlock } from '../components/UserBlockContext';
+import { useProfileNavigation } from '../utils/profileNavigation';
 
 // Dados de exemplo de usuários
 const mockUsers = [
@@ -61,11 +61,11 @@ const mockUsers = [
 
 const UserProfileExampleContent = () => {
   const navigation = useNavigation();
-  const { getBlockedUsers } = useUserBlock();
+  const { navigateToProfile } = useProfileNavigation();
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleProfilePress = (user) => {
-    Alert.alert('Perfil Clicado', `Você clicou no perfil de ${user.name}`);
+    navigateToProfile(user);
   };
 
   const handleFollowPress = (user) => {
@@ -112,14 +112,12 @@ const UserProfileExampleContent = () => {
           />
         ))}
 
-        {blockedUsers.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Usuários Bloqueados</Text>
-            <Text style={styles.sectionDescription}>
-              {blockedUsers.length} usuário(s) bloqueado(s)
-            </Text>
-          </View>
-        )}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Usuários Bloqueados</Text>
+          <Text style={styles.sectionDescription}>
+            Verifique a funcionalidade de bloqueio nos perfis
+          </Text>
+        </View>
 
         <View style={styles.infoSection}>
           <Text style={styles.infoTitle}>Funcionalidades Implementadas:</Text>
@@ -150,11 +148,7 @@ const UserProfileExampleContent = () => {
 };
 
 const UserProfileExample = () => {
-  return (
-    <UserBlockProvider>
-      <UserProfileExampleContent />
-    </UserBlockProvider>
-  );
+  return <UserProfileExampleContent />;
 };
 
 const styles = StyleSheet.create({

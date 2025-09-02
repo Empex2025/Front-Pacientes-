@@ -7,18 +7,18 @@ import {
 } from 'react-native';
 import { CreditCardIcon, CheckIcon } from './HealthIcons';
 import { healthStyles } from './HealthStyles';
+import StandardHeader from '../StandardHeader';
 
 const AppointmentDetails = ({ onNavigate }) => {
   const [selectedPayment, setSelectedPayment] = useState('credit');
 
   return (
     <View style={healthStyles.container}>
-      <View style={healthStyles.header}>
-        <TouchableOpacity onPress={() => onNavigate('appointment-question')}>
-          <Text style={healthStyles.backButton}>←</Text>
-        </TouchableOpacity>
-        <Text style={healthStyles.headerTitle}>Agendamento</Text>
-      </View>
+      <StandardHeader 
+        title="Agendamento" 
+        onBackPress={() => onNavigate('appointment-question')}
+        showProfileImage={true}
+      />
 
       <View style={healthStyles.detailsContainer}>
         <Text style={healthStyles.questionText}>Você tem dúvidas ou preocupações?</Text>

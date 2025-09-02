@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, StyleSheet, Alert, Text, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, ScrollView, StyleSheet, Alert, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Importação dos componentes de chat
@@ -16,6 +16,7 @@ export const Chat = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { conversation } = route.params;
+  const scrollViewRef = useRef(null);
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -64,6 +65,11 @@ export const Chat = () => {
       
       setMessages(prev => [...prev, message]);
       setNewMessage('');
+      
+      // Scroll automático para a nova mensagem
+      setTimeout(() => {
+        scrollViewRef.current?.scrollToEnd({ animated: true });
+      }, 100);
     }
   };
 
@@ -89,11 +95,7 @@ export const Chat = () => {
   };
 
   return (
-    <KeyboardAvoidingView 
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
-    >
+    <View style={styles.container}>
       <ChatHeader
         contact={conversation}
         onBack={handleBack}
@@ -113,6 +115,7 @@ export const Chat = () => {
       )}
       
       <ScrollView 
+        ref={scrollViewRef}
         style={styles.messagesContainer}
         contentContainerStyle={styles.messagesContentContainer}
         showsVerticalScrollIndicator={false}
@@ -146,7 +149,7 @@ export const Chat = () => {
         onSend={handleSendMessage}
         onAttachment={handleAttachment}
       />
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
@@ -159,7 +162,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   messagesContentContainer: {
-    paddingBottom: 20,
+    paddingBottom: 100,
   },
   dateSeparator: {
     alignItems: 'center',

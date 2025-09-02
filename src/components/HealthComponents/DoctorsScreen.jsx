@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { FilterIcon, StarIcon } from './HealthIcons';
 import { healthStyles } from './HealthStyles';
+import StandardHeader from '../StandardHeader';
 
 const DoctorsScreen = ({ onNavigate }) => {
   // Dados mockados
@@ -54,15 +55,11 @@ const DoctorsScreen = ({ onNavigate }) => {
 
   return (
     <View style={healthStyles.container}>
-      <View style={healthStyles.header}>
-        <TouchableOpacity onPress={() => onNavigate('home')}>
-          <Text style={healthStyles.backButton}>←</Text>
-        </TouchableOpacity>
-        <Text style={healthStyles.headerTitle}>Médicos</Text>
-        <TouchableOpacity>
-          <FilterIcon />
-        </TouchableOpacity>
-      </View>
+      <StandardHeader 
+        title="Médicos" 
+        onBackPress={() => onNavigate('home')}
+        showProfileImage={true}
+      />
 
       <FlatList
         data={doctors}

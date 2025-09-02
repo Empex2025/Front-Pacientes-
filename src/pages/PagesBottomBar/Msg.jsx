@@ -35,10 +35,7 @@ export const Msg = () => {
     console.log('Buscando conversas por:', text);
   };
 
-  // Função para lidar com clique no perfil
-  const handleProfilePress = () => {
-    Alert.alert('Perfil', 'Abrir perfil do usuário');
-  };
+
 
   // Filtrar conversas baseado na busca
   const filterConversations = (conversations) => {
@@ -63,9 +60,7 @@ export const Msg = () => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <MsgHeader 
-        onProfilePress={handleProfilePress}
-      />
+      <MsgHeader />
       
       <MsgSearchBar 
         value={searchText}

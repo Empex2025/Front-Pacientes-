@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { 
-  View, 
-  Text, 
   StyleSheet, 
-  TouchableOpacity, 
   SafeAreaView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Header from "../../components/Header";
 import HomeScreen from '../../components/HealthComponents/HomeScreen';
 import DoctorsScreen from '../../components/HealthComponents/DoctorsScreen';
 import AppointmentQuestion from '../../components/HealthComponents/AppointmentQuestion';
@@ -41,17 +37,11 @@ export const Health = () => {
       case 'records':
         return <MedicalRecordsScreen onNavigate={setCurrentScreen} />;
       case 'health-info':
-        return <PlaceholderScreen 
-          onNavigate={setCurrentScreen} 
-          title="Informações de Saúde" 
-          description="Aqui você encontrará suas informações de saúde e histórico médico."
-        />;
+        navigation.navigate('HealthInfo');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
       case 'exam-results':
-        return <PlaceholderScreen 
-          onNavigate={setCurrentScreen} 
-          title="Resultados de Exames" 
-          description="Visualize e gerencie seus resultados de exames laboratoriais."
-        />;
+        navigation.navigate('ExamResults');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
       case 'exams':
         return <PlaceholderScreen 
           onNavigate={setCurrentScreen} 
@@ -64,6 +54,39 @@ export const Health = () => {
           title="Cuidadores" 
           description="Encontre e contrate cuidadores profissionais."
         />;
+      case 'search-appointments':
+        navigation.navigate('SearchAppointments');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'specialty-doctors':
+        navigation.navigate('SpecialtyDoctors');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'location-selector':
+        navigation.navigate('LocationSelector');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'service-history':
+        navigation.navigate('ServiceHistory');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'completed-appointment':
+        navigation.navigate('CompletedAppointment');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'appointment-options':
+        navigation.navigate('AppointmentOptions');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'schedule-return':
+        navigation.navigate('ScheduleReturn');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'prescriptions':
+        navigation.navigate('Prescriptions');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'upload-exam':
+        navigation.navigate('UploadExam');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'pre-consultation-questions':
+        navigation.navigate('PreConsultationQuestions');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
+      case 'select-date-time':
+        navigation.navigate('SelectDateTime');
+        return <HomeScreen onNavigate={setCurrentScreen} />;
       default:
         return <HomeScreen onNavigate={setCurrentScreen} />;
     }

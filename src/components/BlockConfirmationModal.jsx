@@ -1,18 +1,15 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Modal,
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Modal
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { fontes } from '../styles/styles';
 
-export const BlockConfirmationModal = ({
-  visible,
-  onClose,
-  onConfirmBlock,
-  username,
-}) => {
+const BlockConfirmationModal = ({ visible, onClose, username, onConfirmBlock }) => {
   return (
     <Modal
       visible={visible}
@@ -22,40 +19,39 @@ export const BlockConfirmationModal = ({
     >
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
+          {/* Handle para arrastar */}
           <View style={styles.handle} />
           
-          <View style={styles.content}>
-            <Text style={styles.title}>
-              Você tem certeza que deseja bloquear @{username}?
-            </Text>
-            
-            <Text style={styles.description}>
-              O usuário não poderá ver suas publicações e flashs, nem aparecerá em suas buscas.
-            </Text>
-            
-            <Text style={styles.description}>
-              É possível desfazer essa alteração em{' '}
-              <Text style={styles.highlight}>Opções > Bloqueados</Text>
-            </Text>
-            
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.confirmButton}
-                onPress={() => {
-                  onConfirmBlock();
-                  onClose();
-                }}
-              >
-                <Text style={styles.confirmButtonText}>Sim, Bloquear</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity
-                style={styles.cancelButton}
-                onPress={onClose}
-              >
-                <Text style={styles.cancelButtonText}>Voltar</Text>
-              </TouchableOpacity>
-            </View>
+          {/* Título */}
+          <Text style={styles.title}>
+            Você tem certeza que deseja bloquear {username} ?
+          </Text>
+
+          {/* Descrição */}
+          <Text style={styles.description}>
+            O usuário não poderá ver suas publicações e flashs, nem aparecerá em suas buscas.
+          </Text>
+
+          {/* Informação sobre desfazer */}
+          <Text style={styles.undoInfo}>
+            É possível desfazer essa alteração em <Text style={styles.boldText}>Opções</Text> {'>'} <Text style={styles.boldText}>Bloqueados</Text>
+          </Text>
+
+          {/* Botões de ação */}
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity 
+              style={styles.confirmButton}
+              onPress={onConfirmBlock}
+            >
+              <Text style={styles.confirmButtonText}>Sim, Bloquear</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.cancelButton}
+              onPress={onClose}
+            >
+              <Text style={styles.cancelButtonText}>Voltar</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -66,77 +62,82 @@ export const BlockConfirmationModal = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    paddingHorizontal: 20,
   },
   modalContainer: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    width: '85%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 24,
+    width: '100%',
     maxWidth: 400,
-    paddingBottom: 20,
   },
   handle: {
     width: 40,
     height: 4,
-    backgroundColor: '#D1D1D6',
+    backgroundColor: '#E0E0E0',
     borderRadius: 2,
     alignSelf: 'center',
-    marginTop: 12,
-    marginBottom: 8,
-  },
-  content: {
-    paddingHorizontal: 24,
-    paddingVertical: 16,
+    marginBottom: 24,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#1C1C1E',
-    textAlign: 'left',
+    color: '#000',
+    textAlign: 'center',
     marginBottom: 16,
-    lineHeight: 24,
+    fontFamily: fontes.InteloBold,
+    lineHeight: 28,
   },
   description: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 16,
+    lineHeight: 22,
+  },
+  undoInfo: {
     fontSize: 14,
-    color: '#8E8E93',
-    textAlign: 'left',
-    marginBottom: 12,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 32,
     lineHeight: 20,
   },
-  highlight: {
-    color: '#1C1C1E',
-    fontWeight: '600',
+  boldText: {
+    fontWeight: 'bold',
+    color: '#000',
   },
-  buttonContainer: {
-    marginTop: 24,
+  buttonsContainer: {
+    gap: 12,
   },
   confirmButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#FF4757',
     borderRadius: 12,
     paddingVertical: 16,
-    paddingHorizontal: 24,
     alignItems: 'center',
-    marginBottom: 12,
   },
   confirmButtonText: {
-    color: 'white',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily: fontes.InteloBold,
   },
   cancelButton: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderRadius: 12,
     paddingVertical: 16,
-    paddingHorizontal: 24,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#FF6B6B',
+    borderColor: '#FF4757',
   },
   cancelButtonText: {
-    color: '#FF6B6B',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: 'bold',
+    color: '#FF4757',
+    fontFamily: fontes.InteloBold,
   },
 });
+
+export default BlockConfirmationModal;

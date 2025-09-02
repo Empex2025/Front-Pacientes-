@@ -5,16 +5,16 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { healthStyles } from './HealthStyles';
+import StandardHeader from '../StandardHeader';
 
 const AppointmentQuestion = ({ onNavigate }) => {
   return (
     <View style={healthStyles.container}>
-      <View style={healthStyles.header}>
-        <TouchableOpacity onPress={() => onNavigate('doctors')}>
-          <Text style={healthStyles.backButton}>←</Text>
-        </TouchableOpacity>
-        <Text style={healthStyles.headerTitle}>Agendamento</Text>
-      </View>
+      <StandardHeader 
+        title="Agendamento" 
+        onBackPress={() => onNavigate('doctors')}
+        showProfileImage={true}
+      />
 
       <View style={healthStyles.questionContainer}>
         <View style={healthStyles.questionBox}>

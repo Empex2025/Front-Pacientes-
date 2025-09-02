@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Alert, View } from 'react-native';
+import { ScrollView, StyleSheet, Alert, View, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Importação dos componentes do Search
-import { HeaderSearch } from '../../components/Search/HeaderSearch';
 import { SearchBar } from '../../components/Search/SearchBar';
 import { TrendingTopics } from '../../components/Search/TrendingTopics';
 import { PhotoGrid } from '../../components/Search/PhotoGrid';
 
 // Importando o FloatingActionButton
 import FloatingActionButton from '../../components/FloatingActionButton';
+import StandardHeader from '../../components/StandardHeader';
 
 // Componente principal da tela de busca
 export const Search = () => {
@@ -38,10 +38,10 @@ export const Search = () => {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
+      <StandardHeader title="Explorar" showBackButton={false} />
+      
       <ScrollView style={styles.scrollView}>
-        <HeaderSearch title="Explorar" />
-        
         <SearchBar 
           placeholder="Busque por pessoas, assuntos e muito mais..."
           value={searchText}
@@ -61,7 +61,7 @@ export const Search = () => {
       
       {/* FloatingActionButton posicionado absolutamente */}
       <FloatingActionButton />
-    </View>
+    </SafeAreaView>
   );
 };
 

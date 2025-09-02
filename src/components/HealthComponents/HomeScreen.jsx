@@ -19,9 +19,12 @@ import {
   CrownIcon,
   BurgerMenuIcon
 } from './HealthIcons';
+import StandardHeader from '../StandardHeader';
+import { useProfileNavigation, extractUserData } from '../../utils/profileNavigation';
 
 const HomeScreen = ({ onNavigate }) => {
   const [searchText, setSearchText] = useState('');
+  const { navigateToProfile } = useProfileNavigation();
 
   // Dados mockados dos profissionais
   const professionals = [
@@ -75,6 +78,25 @@ const HomeScreen = ({ onNavigate }) => {
     }
   ];
 
+  const handleProfessionalPress = (professional) => {
+    const userData = extractUserData({
+      name: professional.name,
+      image: professional.image,
+      specialty: professional.specialty,
+      // Mapear dados específicos do profissional para o formato de usuário
+      avatar: professional.image,
+      username: professional.name.toLowerCase().replace(/\s+/g, '.'),
+      isVerified: true,
+      bio: `${professional.specialty} - ${professional.appointments} • Avaliação: ${professional.rating} estrelas`,
+      stats: {
+        publications: 0,
+        followers: professional.reviews,
+        following: 0
+      }
+    });
+    navigateToProfile(userData);
+  };
+
   const renderProfessional = ({ item }) => (
     <View style={healthStyles.professionalCard}>
       {item.featured && (
@@ -88,12 +110,16 @@ const HomeScreen = ({ onNavigate }) => {
       )}
       
       <View style={healthStyles.professionalHeader}>
-        <Image source={{ uri: item.image }} style={healthStyles.professionalImage} />
+        <TouchableOpacity onPress={() => handleProfessionalPress(item)}>
+          <Image source={{ uri: item.image }} style={healthStyles.professionalImage} />
+        </TouchableOpacity>
         <View style={healthStyles.professionalInfo}>
-          <View style={healthStyles.nameContainer}>
-            <Text style={healthStyles.professionalName}>{item.name}</Text>
-            <Text style={healthStyles.verifiedIcon}>✓</Text>
-          </View>
+          <TouchableOpacity onPress={() => handleProfessionalPress(item)}>
+            <View style={healthStyles.nameContainer}>
+              <Text style={healthStyles.professionalName}>{item.name}</Text>
+              <Text style={healthStyles.verifiedIcon}>✓</Text>
+            </View>
+          </TouchableOpacity>
           <Text style={healthStyles.professionalSpecialty}>{item.specialty}</Text>
           <View style={healthStyles.ratingContainer}>
             <Text style={healthStyles.starIcon}>⭐</Text>
@@ -145,18 +171,7 @@ const HomeScreen = ({ onNavigate }) => {
   return (
     <SafeAreaView style={healthStyles.container}>
       {/* Header Principal */}
-      <View style={healthStyles.mainHeader}>
-        <Text style={healthStyles.mainTitle}>Minha Saúde</Text>
-        <View style={healthStyles.headerIcons}>
-          <TouchableOpacity style={healthStyles.burgerButton}>
-            <BurgerMenuIcon />
-          </TouchableOpacity>
-          <Image 
-            source={{ uri: 'https://i.pravatar.cc/150?img=1' }} 
-            style={healthStyles.profileImage} 
-          />
-        </View>
-      </View>
+      <StandardHeader title="Minha Saúde" showBackButton={false} showProfileImage={true} />
       
       <ScrollView style={healthStyles.scrollContainer}>
         {/* Botões de Navegação Principais */}

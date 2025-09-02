@@ -45,10 +45,7 @@ export const KeyboardAwareInput = ({
       style={[
         styles.container,
         {
-          paddingBottom: keyboardHeight.interpolate({
-            inputRange: [0, 300],
-            outputRange: [0, 0],
-          }),
+          bottom: keyboardHeight,
         }
       ]}
     >
@@ -88,12 +85,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopWidth: 1,
     borderTopColor: '#e0e0e0',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 8,
+    paddingBottom: 16,
     backgroundColor: 'white',
   },
   attachmentButton: {

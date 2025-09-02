@@ -1,7 +1,7 @@
 {
   "name": "isaude3",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "index.jsx",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -13,8 +13,8 @@
     "@react-navigation/bottom-tabs": "^7.4.6",
     "@react-navigation/native": "^7.1.17",
     "@react-navigation/stack": "^7.4.5",
-    "expo": "~53.0.20",
-    "expo-av": "^15.1.7",
+    "expo": "53.0.22",
+    "expo-av": "~15.1.7",
     "expo-contacts": "~14.2.5",
     "expo-location": "~18.1.6",
     "expo-status-bar": "~2.2.3",

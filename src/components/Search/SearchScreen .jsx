@@ -1,13 +1,13 @@
 // screens/SearchScreen.js
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Alert } from 'react-native';
+import { ScrollView, StyleSheet, Alert, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Importação dos componentes
-import { Header } from './HeaderSearch';
 import { SearchBar } from './SearchBar';
 import { TrendingTopics } from './TrendingTopics';
 import { PhotoGrid } from './PhotoGrid';
+import StandardHeader from '../StandardHeader';
 
 export const SearchScreen = () => {
   const navigation = useNavigation();
@@ -35,25 +35,27 @@ export const SearchScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.mainContainer}>
-      <Header title="Explorar" />
+    <SafeAreaView style={styles.mainContainer}>
+      <StandardHeader title="Explorar" showBackButton={false} />
       
-      <SearchBar 
-        placeholder="Busque por pessoas, assuntos e muito mais..."
-        value={searchText}
-        onChangeText={handleSearchChange}
-      />
-      
-      <TrendingTopics 
-        onTopicPress={handleTopicPress}
-      />
-      
-      <PhotoGrid 
-        title="Achamos que você pode gostar"
-        onImagePress={handleImagePress}
-        columns={3}
-      />
-    </ScrollView>
+      <ScrollView style={styles.scrollView}>
+        <SearchBar 
+          placeholder="Busque por pessoas, assuntos e muito mais..."
+          value={searchText}
+          onChangeText={handleSearchChange}
+        />
+        
+        <TrendingTopics 
+          onTopicPress={handleTopicPress}
+        />
+        
+        <PhotoGrid 
+          title="Achamos que você pode gostar"
+          onImagePress={handleImagePress}
+          columns={3}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -61,5 +63,8 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#F0F2F5',
+  },
+  scrollView: {
+    flex: 1,
   },
 });

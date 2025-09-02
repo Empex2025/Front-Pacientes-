@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import FlashItem from './Flash.jsx'; // Ajuste o caminho se necessário
-import { useStoryViewer } from '../../pages/App';
+import { useStoryViewer } from '../../contexts/StoryViewerContext';
 
 // Debug: Verificar se o useStoryViewer está sendo importado
 console.log('useStoryViewer imported:', typeof useStoryViewer);

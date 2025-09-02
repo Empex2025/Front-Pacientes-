@@ -2,13 +2,13 @@ import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 
 // Importando ícones SVG
-import VectorIcon from '../../../../assets/Health/Vector.svg';
-import LupaIcon from '../../../../assets/Health/lupa.svg';
-import Group6533Icon from '../../../../assets/Health/Group 6533.svg';
-import Group6544Icon from '../../../../assets/Health/Group 6544.svg';
-import UserSvgIcon from '../../../../assets/Health/User.svg';
-import CrownSvgIcon from '../../../../assets/Health/Crown.svg';
-import BurguerBarSvgIcon from '../../../../assets/Health/BurguerBar.svg';
+import VectorIcon from '../../../assets/Health/Vector.svg';
+import LupaIcon from '../../../assets/Health/lupa.svg';
+import Group6533Icon from '../../../assets/Health/Group 6533.svg';
+import Group6544Icon from '../../../assets/Health/Group 6544.svg';
+import UserSvgIcon from '../../../assets/Health/User.svg';
+import CrownSvgIcon from '../../../assets/Health/Crown.svg';
+import BurguerBarSvgIcon from '../../../assets/Health/BurguerBar.svg';
 
 const styles = StyleSheet.create({
   icon: {

@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useProfileNavigation, extractUserData } from '../../utils/profileNavigation';
 
 export const ConversationItem = ({ 
   conversation, 
   onPress 
 }) => {
+  const { navigateToProfile } = useProfileNavigation();
+  
   const {
     id,
     name,
@@ -17,23 +20,32 @@ export const ConversationItem = ({
     isActiveCall
   } = conversation;
 
+  const handleProfilePress = () => {
+    const userData = extractUserData(conversation);
+    navigateToProfile(userData);
+  };
+
   return (
     <TouchableOpacity style={styles.conversationItem} onPress={() => onPress(conversation)}>
-      <Image 
-        source={{ uri: profileImage }} 
-        style={styles.profileImage}
-      />
+      <TouchableOpacity onPress={handleProfilePress}>
+        <Image 
+          source={{ uri: profileImage }} 
+          style={styles.profileImage}
+        />
+      </TouchableOpacity>
       
-      <View style={styles.contentContainer}>
-        <View style={styles.headerRow}>
-          <Text style={styles.name}>{name}</Text>
-          {isVerified && (
-            <View style={styles.verifiedBadge}>
-              <Text style={styles.verifiedText}>✓</Text>
-            </View>
-          )}
-          <Text style={styles.timestamp}>{timestamp}</Text>
-        </View>
+              <View style={styles.contentContainer}>
+          <View style={styles.headerRow}>
+            <TouchableOpacity onPress={handleProfilePress}>
+              <Text style={styles.name}>{name}</Text>
+            </TouchableOpacity>
+            {isVerified && (
+              <View style={styles.verifiedBadge}>
+                <Text style={styles.verifiedText}>✓</Text>
+              </View>
+            )}
+            <Text style={styles.timestamp}>{timestamp}</Text>
+          </View>
         
         <View style={styles.messageRow}>
           {isActiveCall ? (

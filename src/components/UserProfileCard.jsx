@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useUserBlock } from './UserBlockContext';
 import { ProfileOptionsModal } from './ProfileOptionsModal';
 import { BlockConfirmationModal } from './BlockConfirmationModal';
+import { useProfileNavigation, extractUserData } from '../utils/profileNavigation';
 
 export const UserProfileCard = ({
   user,
@@ -22,15 +24,21 @@ export const UserProfileCard = ({
   onActionPress,
   style,
 }) => {
+  const navigation = useNavigation();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const [showBlockModal, setShowBlockModal] = useState(false);
   const { isUserBlocked, blockUser, unblockUser } = useUserBlock();
 
   const isBlocked = isUserBlocked(user.id);
 
+  const { navigateToProfile } = useProfileNavigation();
+
   const handleProfilePress = () => {
     if (onProfilePress) {
       onProfilePress(user);
+    } else {
+      const userData = extractUserData({ user });
+      navigateToProfile(userData);
     }
   };
 

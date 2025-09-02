@@ -9,6 +9,10 @@ import Sino from '../../assets/header/Notification.svg';
 const Header = () => {
   const navigation = useNavigation();
 
+  const handleProfilePress = () => {
+    navigation.navigate('ProfileOptions');
+  };
+
   return (
     <View style={styles.container}>
       
@@ -23,10 +27,14 @@ const Header = () => {
           <Sino width={24} height={24} />
         </TouchableOpacity>
 
-        <Image
-          source={{ uri: 'https://i.pravatar.cc/150?img=12' }} 
-          style={styles.avatar}
-        />
+        <TouchableOpacity onPress={handleProfilePress}>
+          <Image
+            source={{ 
+              uri: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop'
+            }} 
+            style={styles.avatar}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );

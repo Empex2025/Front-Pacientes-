@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useProfileNavigation, extractUserData } from '../../utils/profileNavigation';
 
 export const ProfileItem = ({ name, specialism, image }) => {
-    // Usamos o 'useState' para criar uma variável de estado para rastrear se o perfil está sendo seguido.
+    const { navigateToProfile } = useProfileNavigation();
     const [isFollowing, setIsFollowing] = useState(false);
 
     // Função que será chamada quando o botão for pressionado.
@@ -11,18 +12,27 @@ export const ProfileItem = ({ name, specialism, image }) => {
         setIsFollowing(!isFollowing);
     };
 
+    const handleProfilePress = () => {
+        const userData = extractUserData({ name, specialism, image });
+        navigateToProfile(userData);
+    };
+
     return (
         <View style={styles.itemContainer}>
             <View style={styles.profileInfo}>
-                <Image source={{ uri: image }} style={styles.profileImage} />
+                <TouchableOpacity onPress={handleProfilePress}>
+                    <Image source={{ uri: image }} style={styles.profileImage} />
+                </TouchableOpacity>
                 <View>
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.profileName}>{name}</Text>
-                        <Image
-                            source={{ uri: 'https://cdn.iconscout.com/icon/free/png-256/free-verified-badge-3788755-3165319.png' }}
-                            style={styles.verifiedIcon}
-                        />
-                    </View>
+                    <TouchableOpacity onPress={handleProfilePress}>
+                        <View style={styles.nameContainer}>
+                            <Text style={styles.profileName}>{name}</Text>
+                            <Image
+                                source={{ uri: 'https://cdn.iconscout.com/icon/free/png-256/free-verified-badge-3788755-3165319.png' }}
+                                style={styles.verifiedIcon}
+                            />
+                        </View>
+                    </TouchableOpacity>
                     <Text style={styles.profileSpecialism}>{specialism}</Text>
                 </View>
             </View>

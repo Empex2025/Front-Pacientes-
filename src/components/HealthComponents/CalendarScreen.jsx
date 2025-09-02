@@ -6,6 +6,7 @@ import {
   ScrollView
 } from 'react-native';
 import { healthStyles } from './HealthStyles';
+import StandardHeader from '../StandardHeader';
 
 const CalendarScreen = ({ onNavigate }) => {
   const [selectedDate, setSelectedDate] = useState('25');
@@ -13,12 +14,11 @@ const CalendarScreen = ({ onNavigate }) => {
 
   return (
     <View style={healthStyles.container}>
-      <View style={healthStyles.header}>
-        <TouchableOpacity onPress={() => onNavigate('appointment-details')}>
-          <Text style={healthStyles.backButton}>←</Text>
-        </TouchableOpacity>
-        <Text style={healthStyles.headerTitle}>Agendamento</Text>
-      </View>
+      <StandardHeader 
+        title="Agendamento" 
+        onBackPress={() => onNavigate('appointment-details')}
+        showProfileImage={true}
+      />
 
       <ScrollView style={healthStyles.calendarContainer}>
         {/* Calendário simplificado */}

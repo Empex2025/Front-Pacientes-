@@ -6,16 +6,16 @@ import {
 } from 'react-native';
 import { CheckIcon } from './HealthIcons';
 import { healthStyles } from './HealthStyles';
+import StandardHeader from '../StandardHeader';
 
 const AppointmentConfirmed = ({ onNavigate }) => {
   return (
     <View style={healthStyles.container}>
-      <View style={healthStyles.header}>
-        <TouchableOpacity onPress={() => onNavigate('calendar')}>
-          <Text style={healthStyles.backButton}>←</Text>
-        </TouchableOpacity>
-        <Text style={healthStyles.headerTitle}>Agendamento</Text>
-      </View>
+      <StandardHeader 
+        title="Agendamento" 
+        onBackPress={() => onNavigate('calendar')}
+        showProfileImage={true}
+      />
 
       <View style={healthStyles.confirmedContainer}>
         <CheckIcon />
